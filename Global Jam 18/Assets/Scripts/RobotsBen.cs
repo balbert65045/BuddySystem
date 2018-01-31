@@ -34,7 +34,7 @@ public class RobotsBen : MonoBehaviour
         switch (CurrentFacingDirection)
         {
             case DirectionFacing.Up:
-                Debug.Log("Turn up");
+             //   Debug.Log("Turn up");
                 animator.SetBool("FacingDown", false);
                 animator.SetBool("FacingSide", false);
                 animator.SetBool("FacingUp", true);
@@ -52,14 +52,14 @@ public class RobotsBen : MonoBehaviour
                 animator.SetBool("FacingDown", false);
                 animator.SetBool("FacingSide", true);
               //  animator.SetTrigger("TurnSide");
-                MySprite.flipX = true;
+             //   MySprite.flipX = true;
                 break;
             case DirectionFacing.Right:
                 animator.SetBool("FacingUp", false);
                 animator.SetBool("FacingDown", false);
                 animator.SetBool("FacingSide", true);
             //    animator.SetTrigger("TurnSide"); 
-                MySprite.flipX = false;
+             //   MySprite.flipX = false;
                 break;
         }
     }
