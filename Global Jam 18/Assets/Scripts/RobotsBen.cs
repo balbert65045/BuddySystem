@@ -38,27 +38,27 @@ public class RobotsBen : MonoBehaviour
                 animator.SetBool("FacingDown", false);
                 animator.SetBool("FacingSide", false);
                 animator.SetBool("FacingUp", true);
-                animator.SetTrigger("TurnUp");
+               // animator.SetTrigger("TurnUp");
                 break;
             case DirectionFacing.Down:
                 animator.SetBool("FacingUp", false);
                 
                 animator.SetBool("FacingSide", false);
                 animator.SetBool("FacingDown", true);
-                animator.SetTrigger("TurnDown");
+               // animator.SetTrigger("TurnDown");
                 break;
             case DirectionFacing.Left:
                 animator.SetBool("FacingUp", false);
                 animator.SetBool("FacingDown", false);
                 animator.SetBool("FacingSide", true);
-                animator.SetTrigger("TurnSide");
+              //  animator.SetTrigger("TurnSide");
                 MySprite.flipX = true;
                 break;
             case DirectionFacing.Right:
                 animator.SetBool("FacingUp", false);
                 animator.SetBool("FacingDown", false);
                 animator.SetBool("FacingSide", true);
-                animator.SetTrigger("TurnSide"); 
+            //    animator.SetTrigger("TurnSide"); 
                 MySprite.flipX = false;
                 break;
         }
