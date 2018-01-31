@@ -77,15 +77,23 @@ public class RobotsBen : MonoBehaviour
             switch (CurrentFacingDirection)
             {
                 case DirectionFacing.Down:
+                    animator.SetBool("MoveUp", false);
+                    animator.SetBool("MoveSide", false);
                     animator.SetBool("MoveDown", true);
                     break;
                 case DirectionFacing.Up:
+                    animator.SetBool("MoveDown", false);
+                    animator.SetBool("MoveSide", false);
                     animator.SetBool("MoveUp", true);
                     break;
                 case DirectionFacing.Left:
+                    animator.SetBool("MoveUp", false);
+                    animator.SetBool("MoveDown", false);
                     animator.SetBool("MoveSide", true);
                     break;
                 case DirectionFacing.Right:
+                    animator.SetBool("MoveUp", false);
+                    animator.SetBool("MoveDown", false);
                     animator.SetBool("MoveSide", true);
                     break;
             }
@@ -111,7 +119,7 @@ public class RobotsBen : MonoBehaviour
                 MoveToMyLeft();
                 break;
             case DirectionFacing.Up:
-                MoveForward();
+                MoveForward(null);
                 break;
             case DirectionFacing.Down:
                 MoveBackWard();
@@ -126,19 +134,19 @@ public class RobotsBen : MonoBehaviour
         {
             case DirectionFacing.Up:
                 //animator.SetTrigger("SignalRecieved_Up");
-                StartCoroutine("FaceLeft");
+                FaceLeft(null);
                 break;
             case DirectionFacing.Down:
-               // animator.SetTrigger("SignalRecieved_Down");
-                StartCoroutine("FaceRight");
+                // animator.SetTrigger("SignalRecieved_Down");
+                FaceRight(null);
                 break;
             case DirectionFacing.Left:
-               // animator.SetTrigger("SignalRecieved_Side");
-                StartCoroutine("FaceDown");
+                // animator.SetTrigger("SignalRecieved_Side");
+                FaceDown(null);
                 break;
             case DirectionFacing.Right:
-               // animator.SetTrigger("SignalRecieved_Side");
-                StartCoroutine("FaceUp");
+                // animator.SetTrigger("SignalRecieved_Side");
+                FaceUp(null);
                 break;
         }
       //  MovePosition = transform.position + (MoveDirection * MoveDistance);
@@ -150,20 +158,20 @@ public class RobotsBen : MonoBehaviour
         switch (CurrentFacingDirection)
         {
             case DirectionFacing.Up:
-              //  animator.SetTrigger("SignalRecieved_Up");
-                StartCoroutine("FaceRight");
+                //  animator.SetTrigger("SignalRecieved_Up");
+                FaceRight(null);
                 break;
             case DirectionFacing.Down:
-             //   animator.SetTrigger("SignalRecieved_Down");
-                StartCoroutine("FaceLeft");
+                //   animator.SetTrigger("SignalRecieved_Down");
+                FaceLeft(null);
                 break;
             case DirectionFacing.Left:
-              //  animator.SetTrigger("SignalRecieved_Side");
-                StartCoroutine("FaceUp");
+                //  animator.SetTrigger("SignalRecieved_Side");
+                FaceUp(null);
                 break;
             case DirectionFacing.Right:
-              //  animator.SetTrigger("SignalRecieved_Side");
-                StartCoroutine("FaceDown");
+                //  animator.SetTrigger("SignalRecieved_Side");
+                FaceDown(null);
                 // MySprite.sprite = Sprites[0];
                 break;
         }
@@ -176,27 +184,27 @@ public class RobotsBen : MonoBehaviour
         switch (CurrentFacingDirection)
         {
             case DirectionFacing.Up:
-             //   animator.SetTrigger("SignalRecieved_Up");
-                StartCoroutine("FaceDown");
+                //   animator.SetTrigger("SignalRecieved_Up");
+                FaceDown(null);
                 //   MySprite.sprite = Sprites[0];
                 break;
             case DirectionFacing.Down:
-              //  animator.SetTrigger("SignalRecieved_Down");
-                StartCoroutine("FaceUp");
+                //  animator.SetTrigger("SignalRecieved_Down");
+                FaceUp(null);
                 break;
             case DirectionFacing.Left:
-               // animator.SetTrigger("SignalRecieved_Side");
-                StartCoroutine("FaceRight");
+                // animator.SetTrigger("SignalRecieved_Side");
+                FaceRight(null);
                 break;
             case DirectionFacing.Right:
-              //  animator.SetTrigger("SignalRecieved_Side");
-                StartCoroutine("FaceLeft");
+                //  animator.SetTrigger("SignalRecieved_Side");
+                FaceLeft(null);
                 break;
         }
         //  MovePosition = transform.position + (MoveDirection * MoveDistance);
     }
 
-    void MoveForward()
+    void MoveForward(Cell cell)
     {
         Vector3 MoveDirection = Vector3.zero;
         switch (CurrentFacingDirection)
@@ -218,8 +226,8 @@ public class RobotsBen : MonoBehaviour
                 MoveDirection = Vector3.right;
                 break;
         }
-        IEnumerator faceStraight = FaceStraight(MoveDirection);
-        StartCoroutine(faceStraight);
+       FaceStraight(MoveDirection, null);
+
     }
 
     bool CheckForPillar(Vector3 Direction)
@@ -239,21 +247,22 @@ public class RobotsBen : MonoBehaviour
         return (Move);
     }
 
-    IEnumerator FaceStraight(Vector3 Direcion)
+    void FaceStraight(Vector3 Direcion, Cell arrowCell)
     {
         //yield return new WaitForSeconds(.5f);
 
         bool Move = CheckForPillar(Direcion);
         if (Move) {
-            MovePosition = transform.position + (Direcion * MoveDistance);
+            if (arrowCell == null) { MovePosition = transform.position + (Direcion * MoveDistance); }
+            else { MovePosition = arrowCell.transform.position + (Direcion * MoveDistance); }
             moveEndTime = Time.time + moveDuration;
             moveStartTime = Time.time;
         }
-        yield return null;
+       
     }
 
 
-        IEnumerator FaceRight()
+        void FaceRight(Cell arrowCell)
     {
 
       //  yield return new WaitForSeconds(.5f);
@@ -265,15 +274,17 @@ public class RobotsBen : MonoBehaviour
         Vector3 MoveDirection = Vector3.right;
         bool Move = CheckForPillar(MoveDirection);
         if (Move)
-        { MovePosition = transform.position + (MoveDirection * MoveDistance);
+        {
+            if (arrowCell == null) { MovePosition = transform.position + (MoveDirection * MoveDistance); }
+            else { MovePosition = arrowCell.transform.position + (MoveDirection * MoveDistance); }
             moveEndTime = Time.time + moveDuration;
             moveStartTime = Time.time;
         }
         else { animator.SetTrigger("TurnSide"); }
-        yield return null;
+       
     }
 
-    IEnumerator FaceLeft()
+    void FaceLeft(Cell arrowCell)
     {
       //  yield return new WaitForSeconds(.5f);
         CurrentFacingDirection = DirectionFacing.Left;
@@ -285,15 +296,16 @@ public class RobotsBen : MonoBehaviour
         bool Move = CheckForPillar(MoveDirection);
         if (Move)
         {
-            MovePosition = transform.position + (MoveDirection * MoveDistance);
+            if (arrowCell == null) { MovePosition = transform.position + (MoveDirection * MoveDistance); }
+            else { MovePosition = arrowCell.transform.position + (MoveDirection * MoveDistance); }
             moveEndTime = Time.time + moveDuration;
             moveStartTime = Time.time;
         }
         else { animator.SetTrigger("TurnSide"); }
-        yield return null;
+       
     }
 
-    IEnumerator FaceUp()
+    void FaceUp(Cell arrowCell)
     {
       //  yield return new WaitForSeconds(.5f);
         CurrentFacingDirection = DirectionFacing.Up;
@@ -305,15 +317,16 @@ public class RobotsBen : MonoBehaviour
         bool Move = CheckForPillar(MoveDirection);
         if (Move)
         {
-            MovePosition = transform.position + (MoveDirection * MoveDistance);
+            if (arrowCell == null) { MovePosition = transform.position + (MoveDirection * MoveDistance); }
+            else { MovePosition = arrowCell.transform.position + (MoveDirection * MoveDistance); }
             moveEndTime = Time.time + moveDuration;
             moveStartTime = Time.time;
         }
         else { animator.SetTrigger("TurnUp"); }
-        yield return null;
+      
     }
 
-    IEnumerator FaceDown()
+    void FaceDown(Cell arrowCell)
     {
         //yield return new WaitForSeconds(.5f);
         CurrentFacingDirection = DirectionFacing.Down;
@@ -324,12 +337,13 @@ public class RobotsBen : MonoBehaviour
         bool Move = CheckForPillar(MoveDirection);
         if (Move)
         {
-            MovePosition = transform.position + (MoveDirection * MoveDistance);
+            if (arrowCell == null) { MovePosition = transform.position + (MoveDirection * MoveDistance); }
+            else { MovePosition = arrowCell.transform.position + (MoveDirection * MoveDistance); }
             moveEndTime = Time.time + moveDuration;
             moveStartTime = Time.time;
         }
         else { animator.SetTrigger("TurnDown"); }
-        yield return null;
+     
     }
 
 
@@ -355,35 +369,37 @@ public class RobotsBen : MonoBehaviour
                     Fall();
                     break;
                 case CellType.MoveArrow:
-                    IEnumerator MoveArrow = MoveFromArrow(other.GetComponent<Cell>().cellDirection);
-                    StartCoroutine(MoveArrow);
+                    MoveFromArrow(other.GetComponent<Cell>().cellDirection, other.GetComponent<Cell>());
+                    break;
+                case CellType.Trap:
+                    Explode();
                     break;
             }
         }
     }
 
-    IEnumerator MoveFromArrow(DirectionFacing Direction)
+    void MoveFromArrow(DirectionFacing Direction, Cell cell)
     {
-        yield return new WaitForSeconds(1f);
+       // yield return new WaitForSeconds(1f);
         if (Direction == CurrentFacingDirection)
         {
-            MoveForward();
+            MoveForward(cell);
         }
         else if (Direction == DirectionFacing.Up)
         {
-            StartCoroutine("FaceUp");
+            FaceUp(cell);
         }
         else if (Direction == DirectionFacing.Down)
         {
-            StartCoroutine("FaceDown");
+            FaceDown(cell);
         }
         else if (Direction == DirectionFacing.Right)
         {
-            StartCoroutine("FaceRight");
+            FaceRight(cell);
         }
         else if (Direction == DirectionFacing.Left)
         {
-            StartCoroutine("FaceLeft");
+            FaceLeft(cell);
         }
     }
 

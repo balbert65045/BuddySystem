@@ -4,21 +4,12 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour {
 
-    public Coordinates coordinates;
-
     public bool hasRobot;
-
-    public Robot occupyingBot;
-
-    public Robot previousOccupant;
 
     public int cellID;
 
     public Cell teleportLink;
 
-    public bool occupiedGoal;
-
-    
     public CellType cellType;
 
     public RobotsBen.DirectionFacing cellDirection; 
@@ -55,39 +46,39 @@ public class Cell : MonoBehaviour {
         }
     }
 
-    //Return can change based on various cell properties as more are added
-    public bool CheckIsMovableCell()
-    {
-        if(cellType == CellType.Pillar || cellType == CellType.Door || 
-            (cellType == CellType.Goal && occupiedGoal))
-        {
-            return false;
-        } else 
-        {
-            return true;
-        }
-    }
+    ////Return can change based on various cell properties as more are added
+    //public bool CheckIsMovableCell()
+    //{
+    //    if(cellType == CellType.Pillar || cellType == CellType.Door || 
+    //        (cellType == CellType.Goal && occupiedGoal))
+    //    {
+    //        return false;
+    //    } else 
+    //    {
+    //        return true;
+    //    }
+    //}
 
-    public void ClearCellOccupation()
-    {
-        hasRobot = false;
-        occupyingBot = null;
-    }
+    //public void ClearCellOccupation()
+    //{
+    //    hasRobot = false;
+    //    occupyingBot = null;
+    //}
 
-    public void UpdateCellOccupation(Robot bot)
-    {
-        if (hasRobot)
-        {
-            previousOccupant = occupyingBot;
-        } else
-        {
-            hasRobot = true;
-        }
-        if (cellType == CellType.Goal) {Goal();}
-        hasRobot = true;
-        occupyingBot = bot;
-        bot.currentCell = this;
-    }
+    //public void UpdateCellOccupation(Robot bot)
+    //{
+    //    if (hasRobot)
+    //    {
+    //        previousOccupant = occupyingBot;
+    //    } else
+    //    {
+    //        hasRobot = true;
+    //    }
+    //    if (cellType == CellType.Goal) {Goal();}
+    //    hasRobot = true;
+    //    occupyingBot = bot;
+    //    bot.currentCell = this;
+    //}
 
 }
 

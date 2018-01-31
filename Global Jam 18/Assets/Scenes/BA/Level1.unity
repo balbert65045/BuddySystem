@@ -2761,7 +2761,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4258660654379368, guid: afc9da2bafc00a94880536901e1a08f1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4258660654379368, guid: afc9da2bafc00a94880536901e1a08f1, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2769,7 +2769,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4258660654379368, guid: afc9da2bafc00a94880536901e1a08f1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 31
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4258660654379368, guid: afc9da2bafc00a94880536901e1a08f1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2808,6 +2808,12 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212367877323683678, guid: afc9da2bafc00a94880536901e1a08f1,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d0aa14c477836aa41825f6ed44f5b2b2,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 114429412579889104, guid: afc9da2bafc00a94880536901e1a08f1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: afc9da2bafc00a94880536901e1a08f1, type: 2}
@@ -3673,6 +3679,11 @@ Prefab:
         type: 2}
       propertyPath: m_WasSpriteAssigned
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114421964603573352, guid: 662d7ba02b9cfdd4c82fc00d4f6fe5e9,
+        type: 2}
+      propertyPath: cellType
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114640749969895738, guid: 662d7ba02b9cfdd4c82fc00d4f6fe5e9, type: 2}
@@ -4684,7 +4695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 758d5602d9fc27140a86b9a877e1a9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentFacingDirection: 3
+  CurrentFacingDirection: 0
   Sprites:
   - {fileID: 21300000, guid: 689da349b9a104441b19d1a546a52c94, type: 3}
   - {fileID: 21300000, guid: fb145c3fd1b0d434fa6393dacac0a294, type: 3}
@@ -5053,7 +5064,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1810385414}
-  - component: {fileID: 1810385415}
   m_Layer: 0
   m_Name: Robots
   m_TagString: Untagged
@@ -5076,19 +5086,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1810385415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1810385413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a49f13a0fd7bb5a45a56810c62e65c02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  robotCount: 0
-  robotPrefab: {fileID: 0}
 --- !u!1001 &1870736718
 Prefab:
   m_ObjectHideFlags: 0
@@ -5732,7 +5729,7 @@ Prefab:
     - target: {fileID: 114421964603573352, guid: 662d7ba02b9cfdd4c82fc00d4f6fe5e9,
         type: 2}
       propertyPath: cellType
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 212045770749430684, guid: 662d7ba02b9cfdd4c82fc00d4f6fe5e9,
         type: 2}
@@ -5928,7 +5925,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.89, y: 1.95, z: 9.05}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2049963845
 Prefab:
