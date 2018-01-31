@@ -20,6 +20,8 @@ public class RobotsBen : MonoBehaviour
 
     BensLevelManager levelManager;
 
+    bool Teleporting = false;
+
     public bool Moving = false;
     float moveEndTime;
     float moveStartTime;
@@ -359,6 +361,9 @@ public class RobotsBen : MonoBehaviour
             Debug.Log(other.GetComponent<Cell>().cellType);
             switch (other.GetComponent<Cell>().cellType)
             {
+                case CellType.Basic:
+                    Teleporting = false;
+                    break;
                 case CellType.Goal:
                     other.GetComponent<Cell>().Goal();
                     other.GetComponent<Cell>().hasRobot = true;
@@ -369,10 +374,21 @@ public class RobotsBen : MonoBehaviour
                     Fall();
                     break;
                 case CellType.MoveArrow:
+                    Teleporting = false;
                     MoveFromArrow(other.GetComponent<Cell>().cellDirection, other.GetComponent<Cell>());
                     break;
                 case CellType.Trap:
                     Explode();
+                    break;
+                case CellType.Teleporter:
+                    if (!Teleporting)
+                    {
+                        other.GetComponent<Cell>().Teleport();
+                        other.GetComponent<Cell>().teleportLink.Teleport();
+                        transform.position = other.GetComponent<Cell>().teleportLink.transform.position;
+                        MoveForward(other.GetComponent<Cell>().teleportLink);
+                    }
+                    Teleporting = true;
                     break;
             }
         }
