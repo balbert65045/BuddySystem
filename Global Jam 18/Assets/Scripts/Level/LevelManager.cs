@@ -179,11 +179,11 @@ public class LevelManager : MonoBehaviour {
                 break;
 
             case CellType.MoveArrow:
-                bot.ForceDirection(newCell.cellDirection);
-                targetCell = cells.getTargetCell(newCell, newCell.cellDirection);
-                bot.Move(targetCell.transform.position);
-                bot.currentCell.ClearCellOccupation();
-                targetCell.UpdateCellOccupation(bot);
+             //   bot.ForceDirection(newCell.cellDirection);
+               // targetCell = cells.getTargetCell(newCell, newCell.cellDirection);
+              //  bot.Move(targetCell.transform.position);
+            //    bot.currentCell.ClearCellOccupation();
+           //     targetCell.UpdateCellOccupation(bot);
                 break;
 
             case CellType.Teleporter:

@@ -21,18 +21,13 @@ public class Cell : MonoBehaviour {
     
     public CellType cellType;
 
-    public Direction cellDirection; 
+    public RobotsBen.DirectionFacing cellDirection; 
 
     public Sprite OpenSprite;
     Animator animator;
 
     private void Awake()
     {
-        if (hasRobot)
-        {
-            occupyingBot.currentCell = this;
-            occupyingBot.transform.position = this.transform.position + new Vector3(0f, 0.02f, 0f);
-        }
         animator = GetComponent<Animator>();
     }
 

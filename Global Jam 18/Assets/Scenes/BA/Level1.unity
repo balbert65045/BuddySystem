@@ -2026,6 +2026,11 @@ Prefab:
       propertyPath: cellType
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114421964603573352, guid: 662d7ba02b9cfdd4c82fc00d4f6fe5e9,
+        type: 2}
+      propertyPath: cellDirection
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114640749969895738, guid: 662d7ba02b9cfdd4c82fc00d4f6fe5e9, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 662d7ba02b9cfdd4c82fc00d4f6fe5e9, type: 2}
@@ -2756,7 +2761,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4258660654379368, guid: afc9da2bafc00a94880536901e1a08f1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4258660654379368, guid: afc9da2bafc00a94880536901e1a08f1, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2764,7 +2769,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4258660654379368, guid: afc9da2bafc00a94880536901e1a08f1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 40
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 4258660654379368, guid: afc9da2bafc00a94880536901e1a08f1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3265,7 +3270,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 689da349b9a104441b19d1a546a52c94, type: 3}
   - {fileID: 21300000, guid: fb145c3fd1b0d434fa6393dacac0a294, type: 3}
   - {fileID: 21300000, guid: 2775ac40d34741f4ab6424ed41ebb774, type: 3}
-  speed: 3
+  Moving: 0
+  moveDuration: 1
 --- !u!54 &1150620495
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4683,7 +4689,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 689da349b9a104441b19d1a546a52c94, type: 3}
   - {fileID: 21300000, guid: fb145c3fd1b0d434fa6393dacac0a294, type: 3}
   - {fileID: 21300000, guid: 2775ac40d34741f4ab6424ed41ebb774, type: 3}
-  speed: 3
+  Moving: 0
+  moveDuration: 1
 --- !u!54 &1730237928
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5457,7 +5464,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1922069542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 466.5, y: 311, z: 0}
+  m_LocalPosition: {x: 466, y: 310.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 968175414}
