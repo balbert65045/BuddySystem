@@ -72,8 +72,11 @@ public class BensLevelManager : MonoBehaviour
                 DoorTile.Open();
             }
 
-            if (Goal >= MaxGoalTilesToPass - NumberLoss)
+            if (Goal >= MinGoalTilesToPass)
             {
+                Debug.Log(Goal);
+                Debug.Log(MaxGoalTilesToPass - NumberLoss);
+                Debug.Log("Win");
                 yield return new WaitForSeconds(.5f);
                 Win();
             }

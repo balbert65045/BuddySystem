@@ -226,7 +226,7 @@ public class RobotsBen : MonoBehaviour
                 MoveDirection = Vector3.right;
                 break;
         }
-       FaceStraight(MoveDirection, null);
+       FaceStraight(MoveDirection, cell);
 
     }
 
@@ -414,8 +414,9 @@ public class RobotsBen : MonoBehaviour
     {
        
         animator.SetTrigger("Death");
+        GetComponent<BoxCollider>().enabled = false;
         levelManager.BotDied();
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, .8f);
        
     }
 }
