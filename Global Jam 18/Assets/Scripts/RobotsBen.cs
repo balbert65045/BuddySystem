@@ -238,7 +238,7 @@ public class RobotsBen : MonoBehaviour
         {
             if (Hit.transform.GetComponent<Cell>())
             {
-                if (Hit.transform.GetComponent<Cell>().cellType == CellType.Pillar)
+                if (Hit.transform.GetComponent<Cell>().cellType == CellType.Pillar || Hit.transform.GetComponent<Cell>().cellType == CellType.Door)
                 {
                     Move = false;
                 }
