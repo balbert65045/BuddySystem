@@ -72,7 +72,7 @@ public class BensLevelManager : MonoBehaviour
                 DoorTile.Open();
             }
 
-            if (Goal >= MinGoalTilesToPass)
+            if ((Goal >= MaxGoalTilesToPass - NumberLoss) && (Goal >= MinGoalTilesToPass))
             {
                 Debug.Log(Goal);
                 Debug.Log(MaxGoalTilesToPass - NumberLoss);
@@ -91,16 +91,15 @@ public class BensLevelManager : MonoBehaviour
 
     IEnumerator CheckForWinOrLose()
     {
-        Debug.Log("Checking for lose");
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(.1f);
         BotsLeft = FindObjectsOfType<RobotsBen>();
+
         if (BotsLeft.Length < MinGoalTilesToPass)
         {
 
             Lose();
             yield return null;
         }
-        Debug.Log("Looking for win");
         StartCoroutine("CheckForWin");
         yield return null;
     }

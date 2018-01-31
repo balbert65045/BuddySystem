@@ -406,8 +406,9 @@ public class RobotsBen : MonoBehaviour
     public void Fall()
     {
         animator.SetTrigger("Fall");
-        levelManager.BotDied();
-        Destroy(gameObject, 2f);
+        GetComponent<BoxCollider>().enabled = false;
+        //   levelManager.BotDied();
+        //    Destroy(gameObject, 2f);
     }
 
     public void Explode()
@@ -415,8 +416,16 @@ public class RobotsBen : MonoBehaviour
        
         animator.SetTrigger("Death");
         GetComponent<BoxCollider>().enabled = false;
-        levelManager.BotDied();
-        Destroy(gameObject, .8f);
-       
+     //   levelManager.BotDied();
+     //   Destroy(gameObject, .8f);
     }
+
+    public void BotDied()
+    {
+        Debug.Log("Bot Died");
+        Destroy(gameObject);
+        levelManager.BotDied();
+        
+    }
+
 }
