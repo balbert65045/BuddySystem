@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GameSoundManager : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class GameSoundManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] jumpSounds;
     public AudioClip jumpLandSound;
+
+    Slider slider;
 
     private static GameSoundManager m_instance = null;
     public static GameSoundManager instance
@@ -27,6 +30,7 @@ public class GameSoundManager : MonoBehaviour
 
     public void Awake()
     {
+        
         if (m_instance != null && m_instance != this)
         {
             DestroyObject(gameObject);
@@ -34,5 +38,20 @@ public class GameSoundManager : MonoBehaviour
         }
         m_instance = this;
         DontDestroyOnLoad(gameObject);
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void FindSlider()
+    {
+        slider = FindObjectOfType<MusicSlider>().GetComponent<Slider>();
+    }
+
+
+    public void Update()
+    {
+        if (slider != null)
+        {
+            audioSource.volume = slider.value;
+        }
     }
 }
